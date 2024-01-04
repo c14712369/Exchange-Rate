@@ -9,28 +9,37 @@
 </head>
 
 <body>
-    <div id="container">
+    <h2>匯率轉換器</h2>
 
-        <h2>匯率轉換器</h2>
+    <label for="amount">金額：</label>
+    <input type="number" id="amount" placeholder="輸入金額">
 
-        <div style="display: flex;">
-            <label for="toCurrency">金額：</label>
-            <input type="number" id="amount" placeholder="請輸入金額" />
+    <label for="fromCurrency">選擇原始幣值：</label>
+    <select id="fromCurrency">
+        <option value="USD">美元 (USD)</option>
+        <option value="EUR">歐元 (EUR)</option>
+        <option value="JPY">日圓 (JPY)</option>
+        <option value="GBP">英鎊 (GBP)</option>
+        <option value="CAD">加拿大元 (CAD)</option>
+        <option value="AUD">澳大利亞元 (AUD)</option>
+        <option value="CHF">瑞士法郎 (CHF)</option>
+        <option value="RMB">人民幣 (RMB)</option>
+        <option value="TWD">台幣 (TWD)</option>
+        <option value="KRW">韓元 (KRW)</option>
+    </select>
 
-            <label for="fromCurrency">從：</label>
-            <select id="fromCurrency">
-            </select>
+    <button onclick="calculate()">兌換</button>
 
-            <label for="toCurrency">兌換成：</label>
-            <select id="toCurrency">
-            </select>
-
-            <button onclick="calculate()">兌換</button>
-        </div>
-
-        <div id="rate"></div>
-        <div id="result"></div>
-    </div>
+    <h3>兌換結果</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>目標幣值</th>
+                <th>金額</th>
+            </tr>
+        </thead>
+        <tbody id="resultTableBody"></tbody>
+    </table>
 
     <script src="index.js"></script>
 </body>
