@@ -1,0 +1,55 @@
+#container {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    color: #333;
+}
+
+label {
+    margin: 10px 0;
+    display: block;
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#rate, #result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Optional: Style select dropdown arrow */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 25px;
+    background-image: url('https://imageurl.com/arrow.png'); /* Replace with your arrow image */
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
