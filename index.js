@@ -1,6 +1,5 @@
 function calculate() {
     const fromCurrency = document.getElementById('fromCurrency').value;
-    const toCurrency = document.getElementById('toCurrency').value;
     const amount = parseFloat(document.getElementById('amount').value);
 
     fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`)
@@ -8,32 +7,32 @@ function calculate() {
             return res.json();
         })
         .then(function (data) {
-            const rate = data.rates[toCurrency];
-            document.getElementById('rate').innerHTML = `1 ${fromCurrency} = ${rate} ${toCurrency}`;
-            document.getElementById('result').innerHTML = `兌換結果：${(amount * rate).toFixed(4)} ${toCurrency}`;
+            // 設定要兌換的幣值
+            let toCurrencies = ["USD", "EUR", "JPY", "GBP", "CAD", "AUD", "CHF", "CNY", "TWD", "KRW"];
+            // 過濾選取的幣值
+            toCurrencies = toCurrencies.filter((e) => {
+                return e != fromCurrency;
+            });
 
-            // 清空結果表格
+            // 清空表格
             var resultTableBody = document.getElementById("resultTableBody");
             resultTableBody.innerHTML = "";
 
-            // 添加兌換結果行
-            addRow(resultTableBody, fromCurrency, amount);
-
-            // 添加其他幣值的兌換結果行
-            var toCurrencies = ["USD", "EUR", "JPY"];  // 添加其他常用幣值
-            toCurrencies.forEach(function(toCurr) {
-                if (toCurr !== fromCurrency) {
-                    var convertedAmt = amount * rate;
-                    addRow(resultTableBody, toCurr, convertedAmt.toFixed(2));
-                }
+            toCurrencies.forEach((toCurr) => {
+                const rate = data.rates[toCurr];
+                var convertedAmt = amount * rate;
+                addRow(resultTableBody, toCurr, rate, convertedAmt.toFixed(2));
             });
+
         });
 }
 
-function addRow(tableBody, currency, amount) {
+function addRow(tableBody, currency, rate, amount) {
     var row = tableBody.insertRow();
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
     cell1.innerHTML = currency;
-    cell2.innerHTML = amount;
+    cell2.innerHTML = "1 ： " + rate;
+    cell3.innerHTML = amount;
 }
